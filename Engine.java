@@ -58,27 +58,34 @@ public class Robot {
         
         // Testing Code ONLY Below:
 
-
+        MOVE(1, 100, 20, 5, 10, 10);
+        WAIT(1000);
+        STOP(1, 1, 1);
+        TURN(0, 100, 100, 0, 0, 0, 0, 0);
 
     }
 
     public static void INIT() {
 
-        List<List<Boolean>> MAP = new ArrayList<>(); // determine cell size and saftey cus wtf should i do with 3 sensors
+    boolean running = true;
+    while (running) {
 
-        boolean running = true;
-        while (running) {
-
-            // tracks coordinates and inputs white or black / wall or road, use to determine plausible lines of travell for smarter, saffer & faster movement
-            // rember to not trust anymore if collision occurs
+            
 
     
     
-            }
-
-
         }
-    } // wtf? fix this
+    }
+
+    
+    public static void WAIT(int SLEEP) // in miliseconds
+    {
+        try {  // Pause logic
+            Thread.sleep(SLEEP);  // 10-millisecond sleep
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();  // Restore interrupt status
+        }
+    }
 
     public static void MOVE(boolean DIRECTION, int POWER, int EASE_RATIO, int CAP, int SLEEP, int DISTANCE) {
         if (DIRECTION) {
@@ -97,11 +104,7 @@ public class Robot {
                 RightMotor.setPower(i);
                 FrontMotor.setPower(i);
 
-                try {  // Pause logic
-                    Thread.sleep(SLEEP);  // 10-millisecond sleep
-                } catch (InterruptedException e) {
-                    Thread.currentThread().interrupt();  // Restore interrupt status
-                }
+                WAIT(SLEEP);
 
             }
         } else {
@@ -111,21 +114,24 @@ public class Robot {
         }
     }
 
-    public static void STOP() {
-        LeftMotor.stop();
-        RightMotor.stop();
-        FrontMotor.stop();
-        // Additional stop logic if necessary
+    public static void STOP(bool lm, bool, rm, bool fm) {
+        if(lm)
+            LeftMotor.stop();
+        if(rm)
+            RightMotor.stop();
+        if(fm)
+            FrontMotor.stop();
     }
 
     public static void TURN(boolean LEFT_OR_RIGHT, int LEFT_POWER, int RIGHT_POWER, 
-                            boolean TURN_WHILE_MOVING, int POWER, int EASE_RATIO, int CAP, int SLEEP) {
+                            int FRONT_POWER, boolean TURN_WHILE_MOVING, int EASE_RATIO, int CAP, int SLEEP) 
+    {
 
-        if (LEFT_OR_RIGHT) {
-            LeftMotor.backward();
+        if (LEFT_OR_RIGHT) { 
+            LeftMotor.backward(); // left
             RightMotor.forward();
         } else {
-            LeftMotor.forward();
+            LeftMotor.forward();  // right
             RightMotor.backward();      
         }
 
@@ -135,15 +141,11 @@ public class Robot {
                 for (int i = 0; i < CAP; i += EASE_RATIO) {
                     FrontMotor.setPower(i);
 
-                    try {   // Pause logic
-                        Thread.sleep(SLEEP);  // 10-millisecond sleep
-                    } catch (InterruptedException e) {
-                        Thread.currentThread().interrupt();  // Restore interrupt status
-                    }
+                    WAIT(SLEEP);
 
                 }
             } else { // No ease in, just set power
-                FrontMotor.setPower(POWER);
+                FrontMotor.setPower(FRONT_POWER);
             }
 
         } else { // No forward while moving, just set side wheels
@@ -151,4 +153,5 @@ public class Robot {
             RightMotor.setPower(RIGHT_POWER);
         }
     }
+
 }
