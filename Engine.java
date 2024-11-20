@@ -43,6 +43,7 @@ public class Robot {
     static NXTMotor RightMotor = new NXTMotor(MotorPort.B);
     static NXTMotor FrontMotor = new NXTMotor(MotorPort.C);
 
+    
     public static void main(String[] args) {
     /* 
         The main is used for testing whatever,
@@ -58,11 +59,11 @@ public class Robot {
         
         // Testing Code ONLY Below:
 
-        MOVE(1, 100, 20, 5, 10, 10);
+        MOVE(true, 100, 20, 5, 10); // Forward, easing
         WAIT(1000);
-        STOP(1, 1, 1);
-        TURN(0, 100, 100, 0, 0, 0, 0, 0);
-
+        STOP(true, true, true);
+        TURN(false, 100, 100, 0, false, 0, 0, 0); // Turn to the right
+        STOP(true, true, true);
     }
 
     public static void INIT() {
@@ -87,7 +88,7 @@ public class Robot {
         }
     }
 
-    public static void MOVE(boolean DIRECTION, int POWER, int EASE_RATIO, int CAP, int SLEEP, int DISTANCE) {
+    public static void MOVE(boolean DIRECTION, int POWER, int EASE_RATIO, int CAP, int SLEEP) {
         if (DIRECTION) {
             LeftMotor.forward();
             RightMotor.forward();
@@ -114,13 +115,13 @@ public class Robot {
         }
     }
 
-    public static void STOP(bool lm, bool, rm, bool fm) {
+    public static void STOP(boolean lm, boolean rm, boolean fm) {
         if(lm)
-            LeftMotor.stop();
+        	LeftMotor.setPower(0);
         if(rm)
-            RightMotor.stop();
+            RightMotor.setPower(0);
         if(fm)
-            FrontMotor.stop();
+            FrontMotor.setPower(0);
     }
 
     public static void TURN(boolean LEFT_OR_RIGHT, int LEFT_POWER, int RIGHT_POWER, 
