@@ -19,104 +19,125 @@ public class Robot {
     static LightSensor lightSensorFL = new LightSensor(SensorPort.S3);
     static LightSensor lightSensorBL = new LightSensor(SensorPort.S4);
 
-    public static void WAIT(int SLEEP) // in miliseconds
-    {
-        try {  // Pause logic
-            Thread.sleep(SLEEP);  // 10-millisecond sleep
-        } catch (InterruptedException e) {
-            Thread.currentThread().interrupt();  // Restore interrupt status
-        }
-    }
-
-    public static void MOVE(boolean DIRECTION, int POWER, int EASE_RATIO, int CAP, int SLEEP) {
-        if (DIRECTION) {
-            LeftMotor.forward();
-            RightMotor.forward();
-            FrontMotor.forward();
-        } else {
-            LeftMotor.backward();
-            RightMotor.backward();
-            FrontMotor.backward();
-        }
-
-        if (EASE_RATIO > 0) {  // builds up speed until max
-            for (int i = 0; i < CAP; i += EASE_RATIO) {
-                LeftMotor.setPower(i);
-                RightMotor.setPower(i);
-                FrontMotor.setPower(i);
-
-                WAIT(SLEEP);
-
-            }
-        } else {
-            LeftMotor.setPower(POWER);
-            RightMotor.setPower(POWER);
-            FrontMotor.setPower(POWER);
-        }
-    }
-
-    public static void STOP(boolean lm, boolean rm, boolean fm) {
-        if(lm)
-        	LeftMotor.setPower(0);
-        if(rm)
-            RightMotor.setPower(0);
-        if(fm)
-            FrontMotor.setPower(0);
-    }
-
-    public static void TURN(boolean LEFT_OR_RIGHT, int LEFT_POWER, int RIGHT_POWER, 
-                            int FRONT_POWER, boolean TURN_WHILE_MOVING, int EASE_RATIO, int CAP, int SLEEP) 
-    {
-
-        if (LEFT_OR_RIGHT) { 
-            LeftMotor.backward(); // left
-            RightMotor.forward();
-        } else {
-            LeftMotor.forward();  // right
-            RightMotor.backward();      
-        }
-
-        if (TURN_WHILE_MOVING) {
-
-            if (EASE_RATIO > 0) {
-                for (int i = 0; i < CAP; i += EASE_RATIO) {
-                    FrontMotor.setPower(i);
-
-                    WAIT(SLEEP);
-
-                }
-            } else { // No ease in, just set power
-                FrontMotor.setPower(FRONT_POWER);
-            }
-
-        } else { // No forward while moving, just set side wheels
-            LeftMotor.setPower(LEFT_POWER);
-            RightMotor.setPower(RIGHT_POWER);
-        }
-    }
-
-    
     public static void main(String[] args) {
 
+    	
 
         boolean running = true;
         while (running) {
+
+            FrontMotor.setPower(80);
+            LeftMotor.setPower(80);
+            RightMotor.setPower(80);
 
         	int lightValue1 = lightSensorFR.getLightValue();
             int lightValue2 = lightSensorBL.getLightValue();
             int lightValue3 = lightSensorFR.getLightValue();
             int lightValue4 = lightSensorFL.getLightValue();
         	
-        	if(lightValue1 < 50)
-        	{}
-        	if(lightValue2 < 50)
-        	{}        	
-        	if(lightValue3 < 50)
-        	{}
-           	if(lightValue4 < 50)
-           	{}
-           	
+        	if(lightValue1 < 50)      // Shi at front right
+        	{
+        		FrontMotor.setPower(0);
+                LeftMotor.setPower(80);
+                RightMotor.setPower(80);
+
+                try 
+                {  // Pause logic
+                    Thread.sleep(200);  
+                } 
+                catch (InterruptedException e) 
+                {
+                    Thread.currentThread().interrupt();  // Restore interrupt status
+                }
+                
+                RightMotor.forward();  // Left
+                LeftMotor.backward();
+
+                FrontMotor.setPower(0);
+                LeftMotor.setPower(100);
+                RightMotor.setPower(100);
+
+                try 
+                {  // Pause logic
+                    Thread.sleep(500);  
+                } 
+                catch (InterruptedException e) 
+                {
+                    Thread.currentThread().interrupt();  // Restore interrupt status
+                }
+                
+                LeftMotor.forward();
+                RightMotor.forward();
+                
+                try 
+                {  // Pause logic
+                    Thread.sleep(500);  
+                } 
+                catch (InterruptedException e) 
+                {
+                    Thread.currentThread().interrupt();  // Restore interrupt status
+                }
+        	}
+        	else if(lightValue3 < 50) // some shi at front left
+        	{
+                RightMotor.forward();  // Left
+                LeftMotor.backward();
+
+                FrontMotor.setPower(0);
+                LeftMotor.setPower(100);
+                RightMotor.setPower(100);
+
+                try 
+                {  // Pause logic
+                    Thread.sleep(500);  
+                } 
+                catch (InterruptedException e) 
+                {
+                    Thread.currentThread().interrupt();  // Restore interrupt status
+                }
+                
+                LeftMotor.forward();
+                RightMotor.forward();
+                
+                try 
+                {  // Pause logic
+                    Thread.sleep(500);  
+                } 
+                catch (InterruptedException e) 
+                {
+                    Thread.currentThread().interrupt();  // Restore interrupt status
+                }
+                
+                LeftMotor.forward();
+                RightMotor.forward();
+                
+        	}        	
+        	//else if(lightValue2 < 50)
+        	//{
+        	//	LeftMotor.forward();
+            //    RightMotor.forward();
+        	//}
+        	//else if(lightValue4 < 50)
+           	//{
+            //    LeftMotor.forward();
+            //    RightMotor.forward();
+            //}
+        	
+        	try 
+            {  // Pause logic
+                Thread.sleep(1000);  
+            } 
+            catch (InterruptedException e) 
+            {
+                Thread.currentThread().interrupt();  // Restore interrupt status
+            }
+
+            FrontMotor.forward();
+            LeftMotor.forward();
+            RightMotor.forward();
+
            	// add ultra sonic sensor to work, finish over weekend, track turn with angle of side of octogon
+        	// also track last turn and time between
         }
     }
 }
