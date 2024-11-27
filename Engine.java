@@ -21,19 +21,17 @@ public class Robot {
 
     public static void main(String[] args) {
 
-        LeftMotor.backward();
-        RightMotor.backward();
-        FrontMotor.backward();
+
 
         FrontMotor.setPower(80);
         LeftMotor.setPower(80);
         RightMotor.setPower(80);
-
+        
         int SLEEP = 600;
         boolean running = true;
         while (running) {
 
-            slepp = 600; // maybe change to run with small delay for battery ? and when encounters, the delay check is altered
+            SLEEP = 600; // maybe change to run with small delay for battery ? and when encounters, the delay check is altered
 
             int lightValue1 = lightSensorFR.getLightValue();
             int lightValue2 = lightSensorBR.getLightValue();  // Corrected sensor read
@@ -82,8 +80,8 @@ public class Robot {
                     LeftMotor.setPower(80 + i * 4);
                     RightMotor.setPower(80 + i * 4);
 
-                    int lightValue1 = lightSensorBL.getLightValue();
-                    int lightValue3 = lightSensorBR.getLightValue();
+                    lightValue1 = lightSensorBL.getLightValue();
+                    lightValue3 = lightSensorBR.getLightValue();
 
                     if(lightValue2 > 55 || lightValue4 > 55)
                     {
@@ -142,8 +140,8 @@ public class Robot {
                     LeftMotor.setPower(80 + i * 4);
                     RightMotor.setPower(80 + i * 4);
 
-                    int lightValue1 = lightSensorBL.getLightValue();
-                    int lightValue3 = lightSensorBR.getLightValue();
+                    lightValue1 = lightSensorBL.getLightValue();
+                    lightValue3 = lightSensorBR.getLightValue();
 
                     if(lightValue1 > 55)
                     {
@@ -202,8 +200,8 @@ public class Robot {
                     LeftMotor.setPower(80 + i * 4);
                     RightMotor.setPower(80 + i * 4);
 
-                    int lightValue1 = lightSensorBL.getLightValue();
-                    int lightValue3 = lightSensorBR.getLightValue();
+                    lightValue1 = lightSensorBL.getLightValue();
+                    lightValue3 = lightSensorBR.getLightValue();
 
                     if(lightValue3 > 55)
                     {
@@ -212,6 +210,12 @@ public class Robot {
                     }
                 } 
         	}        	
+            else // no interuptions
+            {
+                LeftMotor.backward();
+                RightMotor.backward();
+                FrontMotor.backward();
+            }
         	//else if(lightValue2 < 50)
         	//{
         	//	LeftMotor.forward();
@@ -237,6 +241,3 @@ public class Robot {
         }
     }
 }
-   
-
- 
