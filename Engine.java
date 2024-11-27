@@ -74,7 +74,7 @@ public class Robot {
 
                 // Longer turn (increase the sleep time for a longer turn)
                 try {
-                    Thread.sleep(500);  // Turn for 500 ms for a longer duration
+                    Thread.sleep(200);  // Turn for 500 ms for a longer duration
                 } catch (InterruptedException e) {
                     Thread.currentThread().interrupt();
                 }
@@ -162,15 +162,26 @@ public class Robot {
                 }
 
                 try {
-                    Thread.sleep(500);  // Turn for 500 ms for a longer duration
+                    Thread.sleep(200);  // Turn for 500 ms for a longer duration
                 } catch (InterruptedException e) {
                     Thread.currentThread().interrupt();
                 }
             }
-            else {  // No interruption, continue forward
+            else if (lightValue2 > 55 || lightValue4 > 55) // New shit, experimantal
+            {
                 LeftMotor.forward();
                 RightMotor.forward();
                 FrontMotor.forward();
+
+                FrontMotor.setPower(100);
+                LeftMotor.setPower(100);
+                RightMotor.setPower(100);
+
+            }
+            else {  // No interruption, continue forward
+                LeftMotor.backward();
+                RightMotor.backward();
+                FrontMotor.backward();
             }
 
             try {
