@@ -28,6 +28,15 @@ public class Robot {
 
         while (running) {
 
+            FrontMotor.setPower(40);
+            LeftMotor.setPower(40);
+            RightMotor.setPower(40);
+
+            FrontMotor.backward();
+            LeftMotor.backward();
+            RightMotor.backward();
+
+
             SLEEP = 50; // Decrease delay to improve responsiveness.
 
             int lightValue1 = lightSensorFR.getLightValue();
