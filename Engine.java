@@ -23,15 +23,15 @@ public class Robot {
 
 
 
-        FrontMotor.setPower(80);
-        LeftMotor.setPower(80);
-        RightMotor.setPower(80);
+        FrontMotor.setPower(40);
+        LeftMotor.setPower(40);
+        RightMotor.setPower(40);
         
         int SLEEP = 600;
         boolean running = true;
         while (running) {
 
-            SLEEP = 600; // maybe change to run with small delay for battery ? and when encounters, the delay check is altered
+            SLEEP = 50; // maybe change to run with small delay for battery ? and when encounters, the delay check is altered
 
             int lightValue1 = lightSensorFR.getLightValue();
             int lightValue2 = lightSensorBR.getLightValue();  // Corrected sensor read
@@ -56,9 +56,9 @@ public class Robot {
                         Thread.currentThread().interrupt();  // Restore interrupt status
                     }
 
-                    FrontMotor.setPower(80 - 1 * 4);
-                    LeftMotor.setPower(80 - i * 4);
-                    RightMotor.setPower(80 - i * 4);
+                    FrontMotor.setPower(40 - 1 * 2);
+                    LeftMotor.setPower(40 - i * 2);
+                    RightMotor.setPower(40 - i * 2);
                 }
 
                 // Move backward (or forward), same logic as in the other cases
@@ -76,16 +76,16 @@ public class Robot {
                         Thread.currentThread().interrupt();  // Restore interrupt status
                     }
 
-                    FrontMotor.setPower(80 + 1 * 4);
-                    LeftMotor.setPower(80 + i * 4);
-                    RightMotor.setPower(80 + i * 4);
+                    FrontMotor.setPower(40 + 1 * 2);
+                    LeftMotor.setPower(40 + i * 2);
+                    RightMotor.setPower(40 + i * 2);
 
                     lightValue1 = lightSensorBL.getLightValue();
                     lightValue3 = lightSensorBR.getLightValue();
 
                     if(lightValue2 > 55 || lightValue4 > 55)
                     {
-                        SLEEP = 10;
+                        SLEEP = 1;
                         break;
                     }
                 }
@@ -103,9 +103,9 @@ public class Robot {
                         Thread.currentThread().interrupt();  // Restore interrupt status
                     }
 
-                    FrontMotor.setPower(80 - 1 * 4);
-                    LeftMotor.setPower(80 - i * 4);
-                    RightMotor.setPower(80 - i * 4);
+                    FrontMotor.setPower(40 - 1 * 2);
+                    LeftMotor.setPower(40 - i * 2);
+                    RightMotor.setPower(40 - i * 2);
 
                 } 
 
@@ -113,8 +113,8 @@ public class Robot {
                 LeftMotor.forward();
 
                 FrontMotor.setPower(0); // turning power
-                LeftMotor.setPower(80);
-                RightMotor.setPower(80);
+                LeftMotor.setPower(40);
+                RightMotor.setPower(40);
 
                 try                     // Turn for how long
                 {  // Pause logic
@@ -136,16 +136,16 @@ public class Robot {
                         Thread.currentThread().interrupt();  // Restore interrupt status
                     }
 
-                    FrontMotor.setPower(80 + 1 * 4);
-                    LeftMotor.setPower(80 + i * 4);
-                    RightMotor.setPower(80 + i * 4);
+                    FrontMotor.setPower(40 + 1 * 2);
+                    LeftMotor.setPower(40 + i * 2);
+                    RightMotor.setPower(40 + i * 2);
 
                     lightValue1 = lightSensorBL.getLightValue();
                     lightValue3 = lightSensorBR.getLightValue();
 
                     if(lightValue1 > 55)
                     {
-                        SLEEP = 10;
+                        SLEEP = 1;
                         break;
                     }
                 } 
@@ -163,9 +163,9 @@ public class Robot {
                         Thread.currentThread().interrupt();  // Restore interrupt status
                     }
 
-                    FrontMotor.setPower(80 - 1 * 4);
-                    LeftMotor.setPower(80 - i * 4);
-                    RightMotor.setPower(80 - i * 4);
+                    FrontMotor.setPower(40 - 1 * 2);
+                    LeftMotor.setPower(40 - i * 2);
+                    RightMotor.setPower(40 - i * 2);
 
                 } 
 
@@ -173,8 +173,8 @@ public class Robot {
                 LeftMotor.backward();
 
                 FrontMotor.setPower(0); // turning power
-                LeftMotor.setPower(80);
-                RightMotor.setPower(80);
+                LeftMotor.setPower(40);
+                RightMotor.setPower(40);
 
                 try                     // Turn for how long
                 {  // Pause logic
@@ -196,16 +196,16 @@ public class Robot {
                         Thread.currentThread().interrupt();  // Restore interrupt status
                     }
 
-                    FrontMotor.setPower(80 + 1 * 4);
-                    LeftMotor.setPower(80 + i * 4);
-                    RightMotor.setPower(80 + i * 4);
+                    FrontMotor.setPower(40 + 1 * 2);
+                    LeftMotor.setPower(40 + i * 2);
+                    RightMotor.setPower(40 + i * 2);
 
                     lightValue1 = lightSensorBL.getLightValue();
                     lightValue3 = lightSensorBR.getLightValue();
 
                     if(lightValue3 > 55)
                     {
-                        SLEEP = 10;
+                        SLEEP = 1;
                         break;
                     }
                 } 
