@@ -69,7 +69,7 @@ public class Robot {
                 {  
                     try 
                     {
-                        Thread.sleep(5);  // Short pause to control speed
+                        Thread.sleep(3);  // Short pause to control speed
                     } 
                      catch (InterruptedException e)
                     {
@@ -118,7 +118,7 @@ public class Robot {
 
                 try                     // Turn for how long
                 {  // Pause logic
-                    Thread.sleep(5);  
+                    Thread.sleep(3);  
                 } 
                 catch (InterruptedException e) 
                 {
@@ -129,7 +129,7 @@ public class Robot {
                 {
                     try 
                     {  // Pause logic
-                        Thread.sleep(5);  
+                        Thread.sleep(3);  
                     } 
                     catch (InterruptedException e) 
                     {
@@ -178,7 +178,7 @@ public class Robot {
 
                 try                     // Turn for how long
                 {  // Pause logic
-                    Thread.sleep(5);  
+                    Thread.sleep(3);  
                 } 
                 catch (InterruptedException e) 
                 {
@@ -189,7 +189,7 @@ public class Robot {
                 {
                     try 
                     {  // Pause logic
-                        Thread.sleep(5);  
+                        Thread.sleep(3);  
                     } 
                     catch (InterruptedException e) 
                     {
