@@ -19,10 +19,9 @@ public class Robot {
 
     public static void main(String[] args) {
 
-        // Increase base speed by 10 from 40 to 50
-        FrontMotor.setPower(50);
-        LeftMotor.setPower(50);
-        RightMotor.setPower(50);
+        FrontMotor.setPower(40);
+        LeftMotor.setPower(40);
+        RightMotor.setPower(40);
 
         int SLEEP = 600;
         boolean running = true;
@@ -36,55 +35,7 @@ public class Robot {
             int lightValue3 = lightSensorFL.getLightValue();
             int lightValue4 = lightSensorBL.getLightValue();
 
-            if (lightValue1 > 55 && lightValue3 > 55) { // Obstacle detected at front left and right
-                // Move forward for 700 milliseconds
-                LeftMotor.forward();
-                RightMotor.forward();
-                FrontMotor.forward();
-                try {
-                    Thread.sleep(700); // Forward for 700 ms
-                } catch (InterruptedException e) {
-                    Thread.currentThread().interrupt();
-                }
-
-                // Continue with the rest of the logic for avoiding obstacles
-                for (int i = 0; i < 20; i++) {
-                    try {
-                        Thread.sleep(5); // Short pause for easing out speed
-                    } catch (InterruptedException e) {
-                        Thread.currentThread().interrupt();
-                    }
-
-                    FrontMotor.setPower(50 - 1 * 2);
-                    LeftMotor.setPower(50 - i * 2);
-                    RightMotor.setPower(50 - i * 2);
-                }
-
-                // Now, continue backward for a while
-                RightMotor.forward();
-                LeftMotor.forward();
-
-                for (int i = 0; i < 20; i++) {
-                    try {
-                        Thread.sleep(3);
-                    } catch (InterruptedException e) {
-                        Thread.currentThread().interrupt();
-                    }
-
-                    FrontMotor.setPower(50 + 1 * 2);
-                    LeftMotor.setPower(50 + i * 2);
-                    RightMotor.setPower(50 + i * 2);
-
-                    lightValue1 = lightSensorBL.getLightValue();
-                    lightValue3 = lightSensorBR.getLightValue();
-
-                    if (lightValue2 > 55 || lightValue4 > 55) {
-                        SLEEP = 1;
-                        break;
-                    }
-                }
-            }
-            else if (lightValue1 > 55) {  // Obstacle at front right
+            if (lightValue1 > 55) {  // Obstacle at front right
                 // Forward motion before turning
                 LeftMotor.forward();
                 RightMotor.forward();
@@ -103,12 +54,12 @@ public class Robot {
                         Thread.currentThread().interrupt();
                     }
 
-                    FrontMotor.setPower(50 - 1 * 2);
-                    LeftMotor.setPower(50 - i * 2);
-                    RightMotor.setPower(50 - i * 2);
+                    FrontMotor.setPower(40 - i * 2);
+                    LeftMotor.setPower(40 - i * 2);
+                    RightMotor.setPower(40 - i * 2);
                 }
 
-                // Turn logic (right turn) with higher power for faster turning
+                // Turn logic (right turn)
                 RightMotor.backward();
                 LeftMotor.forward();
 
@@ -127,9 +78,9 @@ public class Robot {
                         Thread.currentThread().interrupt();
                     }
 
-                    FrontMotor.setPower(50 + 1 * 2);
-                    LeftMotor.setPower(50 + i * 2);
-                    RightMotor.setPower(50 + i * 2);
+                    FrontMotor.setPower(40 + i * 2);
+                    LeftMotor.setPower(40 + i * 2);
+                    RightMotor.setPower(40 + i * 2);
 
                     lightValue1 = lightSensorBL.getLightValue();
                     lightValue3 = lightSensorBR.getLightValue();
@@ -138,6 +89,12 @@ public class Robot {
                         SLEEP = 1;
                         break;
                     }
+                }
+
+                try {
+                    Thread.sleep(500);  // Turn for 500 ms for a longer duration
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
                 }
             }
             else if (lightValue3 > 55) {  // Obstacle at front left
@@ -158,12 +115,12 @@ public class Robot {
                         Thread.currentThread().interrupt();
                     }
 
-                    FrontMotor.setPower(50 - 1 * 2);
-                    LeftMotor.setPower(50 - i * 2);
-                    RightMotor.setPower(50 - i * 2);
+                    FrontMotor.setPower(40 - 1 * 2);
+                    LeftMotor.setPower(40 - i * 2);
+                    RightMotor.setPower(40 - i * 2);
                 }
 
-                // Turn logic (left turn) with higher power for faster turning
+                // Turn logic (left turn)
                 RightMotor.forward();
                 LeftMotor.backward();
 
@@ -182,9 +139,9 @@ public class Robot {
                         Thread.currentThread().interrupt();
                     }
 
-                    FrontMotor.setPower(50 + 1 * 2);
-                    LeftMotor.setPower(50 + i * 2);
-                    RightMotor.setPower(50 + i * 2);
+                    FrontMotor.setPower(40 + i * 2);
+                    LeftMotor.setPower(40 + i * 2);
+                    RightMotor.setPower(40 + i * 2);
 
                     lightValue1 = lightSensorBL.getLightValue();
                     lightValue3 = lightSensorBR.getLightValue();
@@ -193,6 +150,12 @@ public class Robot {
                         SLEEP = 1;
                         break;
                     }
+                }
+
+                try {
+                    Thread.sleep(500);  // Turn for 500 ms for a longer duration
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
                 }
             }
             else {  // No interruption, continue forward
