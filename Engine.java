@@ -19,9 +19,10 @@ public class Robot {
 
     public static void main(String[] args) {
 
-        FrontMotor.setPower(40);
-        LeftMotor.setPower(40);
-        RightMotor.setPower(40);
+        // Increase base speed by 10 from 40 to 50
+        FrontMotor.setPower(50);
+        LeftMotor.setPower(50);
+        RightMotor.setPower(50);
 
         int SLEEP = 600;
         boolean running = true;
@@ -54,9 +55,9 @@ public class Robot {
                         Thread.currentThread().interrupt();
                     }
 
-                    FrontMotor.setPower(40 - 1 * 2);
-                    LeftMotor.setPower(40 - i * 2);
-                    RightMotor.setPower(40 - i * 2);
+                    FrontMotor.setPower(50 - 1 * 2);
+                    LeftMotor.setPower(50 - i * 2);
+                    RightMotor.setPower(50 - i * 2);
                 }
 
                 // Now, continue backward for a while
@@ -70,9 +71,9 @@ public class Robot {
                         Thread.currentThread().interrupt();
                     }
 
-                    FrontMotor.setPower(40 + 1 * 2);
-                    LeftMotor.setPower(40 + i * 2);
-                    RightMotor.setPower(40 + i * 2);
+                    FrontMotor.setPower(50 + 1 * 2);
+                    LeftMotor.setPower(50 + i * 2);
+                    RightMotor.setPower(50 + i * 2);
 
                     lightValue1 = lightSensorBL.getLightValue();
                     lightValue3 = lightSensorBR.getLightValue();
@@ -102,12 +103,12 @@ public class Robot {
                         Thread.currentThread().interrupt();
                     }
 
-                    FrontMotor.setPower(40 - 1 * 2);
-                    LeftMotor.setPower(40 - i * 2);
-                    RightMotor.setPower(40 - i * 2);
+                    FrontMotor.setPower(50 - 1 * 2);
+                    LeftMotor.setPower(50 - i * 2);
+                    RightMotor.setPower(50 - i * 2);
                 }
 
-                // Turn logic (right turn)
+                // Turn logic (right turn) with higher power for faster turning
                 RightMotor.backward();
                 LeftMotor.forward();
 
@@ -126,9 +127,9 @@ public class Robot {
                         Thread.currentThread().interrupt();
                     }
 
-                    FrontMotor.setPower(40 + 1 * 2);
-                    LeftMotor.setPower(40 + i * 2);
-                    RightMotor.setPower(40 + i * 2);
+                    FrontMotor.setPower(50 + 1 * 2);
+                    LeftMotor.setPower(50 + i * 2);
+                    RightMotor.setPower(50 + i * 2);
 
                     lightValue1 = lightSensorBL.getLightValue();
                     lightValue3 = lightSensorBR.getLightValue();
@@ -157,12 +158,12 @@ public class Robot {
                         Thread.currentThread().interrupt();
                     }
 
-                    FrontMotor.setPower(40 - 1 * 2);
-                    LeftMotor.setPower(40 - i * 2);
-                    RightMotor.setPower(40 - i * 2);
+                    FrontMotor.setPower(50 - 1 * 2);
+                    LeftMotor.setPower(50 - i * 2);
+                    RightMotor.setPower(50 - i * 2);
                 }
 
-                // Turn logic (left turn)
+                // Turn logic (left turn) with higher power for faster turning
                 RightMotor.forward();
                 LeftMotor.backward();
 
@@ -181,9 +182,9 @@ public class Robot {
                         Thread.currentThread().interrupt();
                     }
 
-                    FrontMotor.setPower(40 + 1 * 2);
-                    LeftMotor.setPower(40 + i * 2);
-                    RightMotor.setPower(40 + i * 2);
+                    FrontMotor.setPower(50 + 1 * 2);
+                    LeftMotor.setPower(50 + i * 2);
+                    RightMotor.setPower(50 + i * 2);
 
                     lightValue1 = lightSensorBL.getLightValue();
                     lightValue3 = lightSensorBR.getLightValue();
